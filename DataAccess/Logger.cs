@@ -1,14 +1,20 @@
 ﻿namespace DataAccess
 {
-
     using System;
     using System.IO;
     using System.Reflection;
 
-    public class Logger
+    public static class Logger
     {
-        private static readonly string exePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        /// <summary>
+        /// Gets the path to the logfile.txt
+        /// </summary>
+        private static readonly string exePath;
 
+        /// <summary>
+        /// Generates the log
+        /// </summary>
+        /// <param name="message"></param>
         public static void Log (string message)
         {
             StreamWriter log;
@@ -21,19 +27,23 @@
             {
                 log = File.AppendText(exePath + "\\" + "logfile.txt");
             }
-
-            log.WriteLine("Data Time: " + DateTime.Now);
+            log.Write("Date Time: " + DateTime.Now);
 
             if (message.Contains("logged"))
             {
-                log.WriteLine("CLient: " + message);
+                log.WriteLine(", Client: " + message);
             }
             if (message.Contains("Exception"))
             {
-                log.WriteLine("Exception Name: " + message);
+                log.WriteLine(", Exception Name: " + message);
             }
 
             log.Close();
+        }
+
+        static Logger()
+        {
+            exePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         }
     }
 }
