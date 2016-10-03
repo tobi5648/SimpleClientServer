@@ -2,12 +2,8 @@
 {
 
     using System;
-    using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
     using System.Reflection;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public class Logger
     {
@@ -30,7 +26,7 @@
 
             if (message.Contains("logged"))
             {
-                log.WriteLine("CLient: " + message + " has logged on");
+                log.WriteLine("CLient: " + message);
             }
             if (message.Contains("Exception"))
             {
