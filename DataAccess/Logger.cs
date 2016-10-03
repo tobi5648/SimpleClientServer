@@ -15,7 +15,25 @@
         /// Generates the log
         /// </summary>
         /// <param name="message"></param>
-        public static void Log (string message)
+        public static void LogUserLogin (string message)
+        {
+            StreamWriter log;
+
+            if (!File.Exists(exePath + "\\" + "logfile.txt"))
+            {
+                log = new StreamWriter(exePath + "\\" + "logfile.txt");
+            }
+            else
+            {
+                log = File.AppendText(exePath + "\\" + "logfile.txt");
+            }
+
+            log.Write("Date Time: " + DateTime.Now);
+            log.WriteLine(", Client: " + message);
+            log.Close();
+        }
+
+        public static void LogException(string message)
         {
             StreamWriter log;
 

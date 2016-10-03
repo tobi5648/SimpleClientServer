@@ -21,7 +21,7 @@ namespace Tests
 
             //  Act
             DateTime test = DateTime.Now;
-            Logger.Log(message);
+            Logger.LogUserLogin(message);
 
             StreamReader reader = new StreamReader(path + "\\" + "logfile.txt");
 
@@ -52,13 +52,13 @@ namespace Tests
         public void LogException()
         {
             //  Arrange
-            string message = "";
+            string message = "ArgumentException";
             string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             string readLogMessage = string.Empty;
 
             //  Act
             DateTime test = DateTime.Now;
-            Logger.Log(message);
+            Logger.LogException(message);
 
             StreamReader reader = new StreamReader(path + "\\" + "logfile.txt");
 
@@ -82,7 +82,7 @@ namespace Tests
             //    throw new Exception();
             //}
 
-            Assert.AreEqual("Date Time: " + test + ", Client: " + message, readLog.Last());
+            Assert.AreEqual("Date Time: " + test + ", Exception Name: " + message, readLog.Last());
         }
     }
 }
