@@ -1,21 +1,30 @@
 ﻿namespace DataAccess
 {
+    #region Using
     using System;
     using System.IO;
     using System.Reflection;
+    #endregion
 
+    #region Classes
+    /// <summary>
+    /// The Logger class, which will handle the logfile
+    /// </summary>
     public static class Logger
     {
+        #region Fields
         /// <summary>
         /// Gets the path to the logfile.txt
         /// </summary>
         private static readonly string exePath;
+        #endregion
 
+        #region Methods
         /// <summary>
-        /// Generates the log
+        /// Writes in the log when a client logs on
         /// </summary>
         /// <param name="message"></param>
-        public static void LogUserLogin (string message)
+        public static void LogUserLogin(string message)
         {
             StreamWriter log;
 
@@ -33,6 +42,10 @@
             log.Close();
         }
 
+        /// <summary>
+        /// Writes in the log when an Exception occurs
+        /// </summary>
+        /// <param name="message"></param>
         public static void LogException(string message)
         {
             StreamWriter log;
@@ -58,10 +71,17 @@
 
             log.Close();
         }
+        #endregion
 
+        #region Constructors
+        /// <summary>
+        /// A static constructor for the class Logger
+        /// </summary>
         static Logger()
         {
             exePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         }
-    }
+        #endregion
+    } 
+    #endregion
 }

@@ -1,16 +1,22 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DataAccess;
-using System.IO;
-using System.Reflection;
-using System.Linq;
-using System.Collections.Generic;
-
-namespace Tests
+﻿namespace Tests
 {
+    using System;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using DataAccess;
+    using System.IO;
+    using System.Reflection;
+    using System.Linq;
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// Tests the Logger
+    /// </summary>
     [TestClass]
     public class LoggerTests
     {
+        /// <summary>
+        /// Tests the logger for when a client logs in
+        /// </summary>
         [TestMethod]
         public void LogClientLogIn()
         {
@@ -48,6 +54,9 @@ namespace Tests
             Assert.AreEqual("Date Time: " + test + ", Client: " + message, readLog.Last());
         }
 
+        /// <summary>
+        /// Tests the logger for when an exception occurs
+        /// </summary>
         [TestMethod]
         public void LogException()
         {
@@ -71,17 +80,7 @@ namespace Tests
                 readLog.Add(line);
             }
 
-
-            //readLogMessage = Convert.ToString(reader.Read());
-            //if (readLogMessage.Contains(message))
-            //{
-            //    Assert.AreEqual(message, reader.ReadLine());
-            //}
-            //else
-            //{
-            //    throw new Exception();
-            //}
-
+            //  Assert
             Assert.AreEqual("Date Time: " + test + ", Exception Name: " + message, readLog.Last());
         }
     }
