@@ -1,5 +1,6 @@
 ﻿namespace Tests
 {
+    #region Using
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using DataAccess;
@@ -7,13 +8,16 @@
     using System.Reflection;
     using System.Linq;
     using System.Collections.Generic;
+    #endregion
 
+    #region TestClasses
     /// <summary>
     /// Tests the Logger
     /// </summary>
     [TestClass]
     public class LoggerTests
     {
+        #region Tests
         /// <summary>
         /// Tests the logger for when a client logs in
         /// </summary>
@@ -83,5 +87,7 @@
             //  Assert
             Assert.AreEqual("Date Time: " + test + ", Exception Name: " + message, readLog.Last());
         }
-    }
+        #endregion
+    } 
+    #endregion
 }
