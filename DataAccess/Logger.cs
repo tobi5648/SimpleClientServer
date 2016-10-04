@@ -37,6 +37,16 @@
         /// Writes in the log when a client logs on
         /// </summary>
         /// <param name="message">This is the message to be logged in the log, holding the username, prefferable the message should be; {User} has logged in</param>
+        ///<exception cref="UnauthorizedAccessException"></exception>
+        ///<exception cref="ArgumentNullException"></exception>
+        ///<exception cref="ArgumentException"></exception>
+        ///<exception cref="DirectoryNotFoundException"></exception>
+        ///<exception cref="PathTooLongException"></exception>
+        ///<exception cref="IOException"></exception>
+        ///<exception cref="SecurityException"></exception>
+        ///<exception cref="NotSupportedException"></exception>
+        ///<exception cref="ObjectDisposedException"></exception>
+        ///<exception cref="Exception"></exception>
         public static void LogUserLogin(string message)
         {
             try
@@ -73,6 +83,16 @@
         /// Writes in the log when an Exception occurs
         /// </summary>
         /// <param name="message">This is the message to be logged in the log, holding the exceptin, prefferable the message should be the Exception.message</param>
+        ///<exception cref="UnauthorizedAccessException"></exception>
+        ///<exception cref="ArgumentNullException"></exception>
+        ///<exception cref="ArgumentException"></exception>
+        ///<exception cref="DirectoryNotFoundException"></exception>
+        ///<exception cref="PathTooLongException"></exception>
+        ///<exception cref="IOException"></exception>
+        ///<exception cref="SecurityException"></exception>
+        ///<exception cref="NotSupportedException"></exception>
+        ///<exception cref="ObjectDisposedException"></exception>
+        ///<exception cref="Exception"></exception>
         public static void LogException(string message)
         {
             try
@@ -110,6 +130,10 @@
         /// <summary>
         /// A static constructor for the class Logger. It finds the path to the logfile
         /// </summary>
+        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="PathTooLongException"></exception>
+        /// <exception cref="NotSupportedException"></exception>
+        /// <exception cref="Exception"></exception>
         static Logger()
         {
             try
