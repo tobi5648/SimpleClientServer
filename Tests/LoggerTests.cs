@@ -22,7 +22,7 @@
         /// Tests the logger for when a client logs in
         /// </summary>
         [TestMethod]
-        public void LogClientLogIn()
+        public void LogClientLogInTest()
         {
             //  Arrange
             string message = "Mads has logged on";
@@ -33,36 +33,29 @@
             DateTime test = DateTime.Now;
             Logger.LogUserLogin(message);
 
-            StreamReader reader = new StreamReader(path + "\\" + "logfile.txt");
-
-            List<string> readLog = new List<string>();
-
-            while (!reader.EndOfStream)
+            using (StreamReader reader = new StreamReader(path + "\\" + "logfile.txt"))
             {
-                string line = reader.ReadLine();
 
-                readLog.Add(line);
+
+                List<string> readLog = new List<string>();
+
+                while (!reader.EndOfStream)
+                {
+                    string line = reader.ReadLine();
+
+                    readLog.Add(line);
+                }
+
+                //  Assert
+                Assert.AreEqual("Date Time: " + test + ", Client: " + message, readLog.Last());
             }
-
-
-            //readLogMessage = Convert.ToString(reader.Read());
-            //if (readLogMessage.Contains(message))
-            //{
-            //    Assert.AreEqual(message, reader.ReadLine());
-            //}
-            //else
-            //{
-            //    throw new Exception();
-            //}
-
-            Assert.AreEqual("Date Time: " + test + ", Client: " + message, readLog.Last());
         }
 
         /// <summary>
         /// Tests the logger for when an exception occurs
         /// </summary>
         [TestMethod]
-        public void LogException()
+        public void LogExceptionTest()
         {
             //  Arrange
             string message = "ArgumentException";
@@ -73,19 +66,20 @@
             DateTime test = DateTime.Now;
             Logger.LogException(message);
 
-            StreamReader reader = new StreamReader(path + "\\" + "logfile.txt");
-
-            List<string> readLog = new List<string>();
-
-            while (!reader.EndOfStream)
+            using (StreamReader reader = new StreamReader(path + "\\" + "logfile.txt"))
             {
-                string line = reader.ReadLine();
+                List<string> readLog = new List<string>();
 
-                readLog.Add(line);
+                while (!reader.EndOfStream)
+                {
+                    string line = reader.ReadLine();
+
+                    readLog.Add(line);
+                }
+
+                //  Assert
+                Assert.AreEqual("Date Time: " + test + ", Exception: " + message, readLog.Last());
             }
-
-            //  Assert
-            Assert.AreEqual("Date Time: " + test + ", Exception Name: " + message, readLog.Last());
         }
         #endregion
     } 
