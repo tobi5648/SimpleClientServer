@@ -73,7 +73,8 @@
 
             set
             {
-                receiver = value;
+                if (!string.IsNullOrWhiteSpace(value.Password) && !string.IsNullOrWhiteSpace(value.Username))
+                    receiver = value;
             }
         }
         #endregion
