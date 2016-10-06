@@ -1,6 +1,5 @@
 ﻿namespace DataAccess
 {
-
     #region Usings
     using Entities;
     using System;
@@ -88,6 +87,7 @@
             {
                 using (connection)
                 {
+                    connection.Open();
                     reader = null;
                     using(command =  new SqlCommand(storedProcedureQuery, connection))
                     {
@@ -135,11 +135,13 @@
 
             using (connection)
             {
+                connection.Open();
                 reader = null;
                 using (command = new SqlCommand(storedProcedureQuery, connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add(new SqlParameter("@username", SqlDbType.NVarChar)).Value = user.Username;
+                    reader = command.ExecuteReader();
 
                     try
                     {

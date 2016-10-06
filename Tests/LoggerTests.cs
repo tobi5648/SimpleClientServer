@@ -25,7 +25,7 @@
         public void LogClientLogInTest()
         {
             //  Arrange
-            string message = "Mads has logged on";
+            string message = "Mads";
             string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             string readLogMessage = string.Empty;
 
@@ -47,7 +47,7 @@
                 }
 
                 //  Assert
-                Assert.AreEqual("Date Time: " + test + ", Client: " + message, readLog.Last());
+                Assert.AreEqual("Date Time: " + test + ", Client: " + message + " has logged in", readLog.Last());
             }
         }
 

@@ -61,7 +61,7 @@
                 }
 
                 log.Write("Date Time: " + DateTime.Now);
-                log.WriteLine(", Client: " + message + "Has logged in");
+                log.WriteLine(", Client: " + message + " has logged in");
             }
             catch (UnauthorizedAccessException) { throw; }
             catch (ArgumentNullException) { throw; }
