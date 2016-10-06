@@ -10,6 +10,8 @@ namespace Servers
     {
         static void Main(string[] args)
         {
+            LogInServices loginService = new LogInServices();
+            loginService.ListenForLogins();
         }
     }
 }

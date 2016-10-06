@@ -81,10 +81,8 @@
         /// <param name="username">the users username</param>
         /// <param name="password">the users password</param>
         /// <returns>The username and password, and tru/false depending on existance</returns>
-        public bool CheckForUserWithPassword(User user, out string username, out string password)
+        public bool CheckForUserWithPassword(out User user, string username, string password)
         {
-            username = string.Empty;
-            password = string.Empty;
             storedProcedureQuery = "GetUser";
             try
             {
@@ -94,9 +92,10 @@
                     reader = null;
                     using(command =  new SqlCommand(storedProcedureQuery, connection))
                     {
+                        user = null;
                         command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.Add(new SqlParameter("@username", SqlDbType.NVarChar)).Value = user.Username;
-                        command.Parameters.Add(new SqlParameter("@password", SqlDbType.NVarChar)).Value = user.Password;
+                        command.Parameters.Add(new SqlParameter("@username", SqlDbType.NVarChar)).Value = username;
+                        command.Parameters.Add(new SqlParameter("@password", SqlDbType.NVarChar)).Value = password;
 
                         reader = command.ExecuteReader();
 
@@ -104,8 +103,8 @@
                         {
                             while (reader.Read())
                             {
-                                username = reader["username"].ToString();
-                                password = reader["password"].ToString();
+                                user.Username = reader["username"].ToString();
+                                user.Password = reader["password"].ToString();
                             }
                             Logger.LogUserLogin(user.Username);
                             return true;
@@ -142,9 +141,9 @@
         /// <param name="user">The user to be checked</param>
         /// <param name="username">the username of the user</param>
         /// <returns></returns>
-        public bool CheckForUserWithoutPassword(User user, out string username)
+        public bool CheckForUserWithoutPassword(out User user, string username)
         {
-            username = string.Empty;
+            user = null;
             storedProcedureQuery = "GetUserWithoutPassword";
 
             using (connection)
@@ -156,14 +155,14 @@
                     using (command = new SqlCommand(storedProcedureQuery, connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.Add(new SqlParameter("@username", SqlDbType.NVarChar)).Value = user.Username;
+                        command.Parameters.Add(new SqlParameter("@username", SqlDbType.NVarChar)).Value = username;
                         reader = command.ExecuteReader();
 
                         try
                         {
                             while (reader.Read())
                             {
-                                username = reader["username"].ToString();
+                                user.Username = reader["username"].ToString();
                             }
 
                             Logger.LogUserLogin(user.Username);

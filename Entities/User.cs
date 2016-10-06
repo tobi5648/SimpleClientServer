@@ -56,7 +56,7 @@
             }
         }
         #endregion
-
+        
         #region Constructors
         /// <summary>
         /// A constructor for the User

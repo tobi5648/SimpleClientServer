@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="LogOnController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +51,10 @@
     <ProjectReference Include="..\Networking\Networking.csproj">
       <Project>{9a1314da-1f87-4202-a769-5b6f245284dd}</Project>
       <Name>Networking</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Servers\Services.csproj">
+      <Project>{13203dd4-3949-478b-b84b-6ffd984ecfa9}</Project>
+      <Name>Services</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
