@@ -3,8 +3,11 @@
     #region Usings
     using Entities;
     using System;
+    using System.Configuration;
     using System.Data;
     using System.Data.SqlClient;
+    using System.IO;
+    using System.Security;
     #endregion
 
     #region Classes
@@ -104,22 +107,33 @@
                                 username = reader["username"].ToString();
                                 password = reader["password"].ToString();
                             }
+                            Logger.LogUserLogin(user.Username);
                             return true;
                         }
-                        catch (ArgumentException ex)
-                        {
-                            Logger.LogException(ex.Message);
-                            throw;
-                        }
+                        catch (SqlException ex) { Logger.LogException(ex.Message); throw; }
+                        catch (UnauthorizedAccessException ex) { Logger.LogException(ex.Message); throw; }
+                        catch (ArgumentNullException ex) { Logger.LogException(ex.Message); throw; }
+                        catch (ArgumentException ex) { Logger.LogException(ex.Message); throw; }
+                        catch (DirectoryNotFoundException ex) { Logger.LogException(ex.Message); throw; }
+                        catch (PathTooLongException ex) { Logger.LogException(ex.Message); throw; }
+                        catch (IOException ex) { Logger.LogException(ex.Message); throw; }
+                        catch (SecurityException ex) { Logger.LogException(ex.Message); throw; }
+                        catch (NotSupportedException ex) { Logger.LogException(ex.Message); throw; }
+                        catch (ObjectDisposedException ex) { Logger.LogException(ex.Message); throw; }
+                        catch (Exception ex) { Logger.LogException(ex.Message); throw; }
                     }
 
                 }
             }
-            catch (Exception ex)
-            {
-                Logger.LogException(ex.Message);
-                throw;
-            }
+            catch (IOException ex) { Logger.LogException(ex.Message); throw; }
+            catch (ObjectDisposedException ex) { Logger.LogException(ex.Message); throw; }
+            catch (InvalidCastException ex) { Logger.LogException(ex.Message); throw; }
+            catch (ArgumentNullException ex) { Logger.LogException(ex.Message); throw; }
+            catch (ArgumentException ex) { Logger.LogException(ex.Message); throw; }
+            catch (InvalidOperationException ex) { Logger.LogException(ex.Message); throw; }
+            catch (ConfigurationException ex) { Logger.LogException(ex.Message); throw; }
+            catch (SqlException ex) { Logger.LogException(ex.Message); throw; }
+            catch (Exception ex) { Logger.LogException(ex.Message); throw; }
         }
 
         /// <summary>
@@ -135,28 +149,48 @@
 
             using (connection)
             {
-                connection.Open();
-                reader = null;
-                using (command = new SqlCommand(storedProcedureQuery, connection))
+                try
                 {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add(new SqlParameter("@username", SqlDbType.NVarChar)).Value = user.Username;
-                    reader = command.ExecuteReader();
+                    connection.Open();
+                    reader = null;
+                    using (command = new SqlCommand(storedProcedureQuery, connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.Add(new SqlParameter("@username", SqlDbType.NVarChar)).Value = user.Username;
+                        reader = command.ExecuteReader();
 
-                    try
-                    {
-                        while (reader.Read())
+                        try
                         {
-                            username = reader["username"].ToString();
+                            while (reader.Read())
+                            {
+                                username = reader["username"].ToString();
+                            }
+
+                            Logger.LogUserLogin(user.Username);
+                            return true;
                         }
-                        return true;
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.LogException(ex.Message);
-                        throw;
+                        catch (SqlException ex) { Logger.LogException(ex.Message); throw; }
+                        catch (UnauthorizedAccessException ex) { Logger.LogException(ex.Message); throw; }
+                        catch (ArgumentNullException ex) { Logger.LogException(ex.Message); throw; }
+                        catch (ArgumentException ex) { Logger.LogException(ex.Message); throw; }
+                        catch (DirectoryNotFoundException ex) { Logger.LogException(ex.Message); throw; }
+                        catch (PathTooLongException ex) { Logger.LogException(ex.Message); throw; }
+                        catch (IOException ex) { Logger.LogException(ex.Message); throw; }
+                        catch (SecurityException ex) { Logger.LogException(ex.Message); throw; }
+                        catch (NotSupportedException ex) { Logger.LogException(ex.Message); throw; }
+                        catch (ObjectDisposedException ex) { Logger.LogException(ex.Message); throw; }
+                        catch (Exception ex) { Logger.LogException(ex.Message); throw; }
                     }
                 }
+                catch (IOException ex) { Logger.LogException(ex.Message); throw; }
+                catch (ObjectDisposedException ex) { Logger.LogException(ex.Message); throw; }
+                catch (InvalidCastException ex) { Logger.LogException(ex.Message); throw; }
+                catch (ArgumentNullException ex) { Logger.LogException(ex.Message); throw; }
+                catch (ArgumentException ex) { Logger.LogException(ex.Message); throw; }
+                catch (InvalidOperationException ex) { Logger.LogException(ex.Message); throw; }
+                catch (ConfigurationException ex) { Logger.LogException(ex.Message); throw; }
+                catch (SqlException ex) { Logger.LogException(ex.Message); throw; }
+                catch (Exception ex) { Logger.LogException(ex.Message); throw; }
             }
         }
         #endregion
