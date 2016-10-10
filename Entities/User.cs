@@ -2,13 +2,12 @@
 {
     #region Usings
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     #endregion
 
     #region Classes
+    /// <summary>
+    /// This is the user class
+    /// </summary>
     public class User
     {
         #region Fields
@@ -56,8 +55,18 @@
             }
         }
         #endregion
-        
+
         #region Constructors
+        /// <summary>
+        /// An empty constructor for the User
+        /// </summary>
+        /// <param name="username">the users username</param>
+        /// <param name="password">the users password</param>
+        /// <exception cref="Exception"></exception>
+        public User()
+        {
+        }
+
         /// <summary>
         /// A constructor for the User
         /// </summary>

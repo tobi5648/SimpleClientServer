@@ -124,6 +124,52 @@
                 log.Close();
             }
         }
+
+        /// <summary>
+        /// Writes in the log when the server is initializes
+        /// </summary>
+        /// <param name="message">This is the message to be logged in the log, holding the exceptin, prefferable the message should be the Exception.message</param>
+        ///<exception cref="UnauthorizedAccessException"></exception>
+        ///<exception cref="ArgumentNullException"></exception>
+        ///<exception cref="ArgumentException"></exception>
+        ///<exception cref="DirectoryNotFoundException"></exception>
+        ///<exception cref="PathTooLongException"></exception>
+        ///<exception cref="IOException"></exception>
+        ///<exception cref="SecurityException"></exception>
+        ///<exception cref="NotSupportedException"></exception>
+        ///<exception cref="ObjectDisposedException"></exception>
+        ///<exception cref="Exception"></exception>
+        public static void LogServer(string message)
+        {
+            try
+            {
+                if (!File.Exists(exePath + logFile))
+                {
+                    log = new StreamWriter(exePath + logFile);
+                }
+                else
+                {
+                    log = File.AppendText(exePath + logFile);
+                }
+
+                log.Write("Date Time: " + DateTime.Now);
+                log.WriteLine(", Server: " + message);
+            }
+            catch (UnauthorizedAccessException) { throw; }
+            catch (ArgumentNullException) { throw; }
+            catch (ArgumentException) { throw; }
+            catch (DirectoryNotFoundException) { throw; }
+            catch (PathTooLongException) { throw; }
+            catch (IOException) { throw; }
+            catch (SecurityException) { throw; }
+            catch (NotSupportedException) { throw; }
+            catch (ObjectDisposedException) { throw; }
+            catch (Exception) { throw; }
+            finally
+            {
+                log.Close();
+            }
+        }
         #endregion
 
         #region Constructors

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataAccess;
+using Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +12,15 @@ namespace Servers
     {
         static void Main(string[] args)
         {
-            LogInServices loginService = new LogInServices();
-            loginService.ListenForLogins();
+            try
+            {
+                Logger.LogServer("Started");
+                
+                LogInServices loginService = new LogInServices();
+                loginService.ListenForLogins();
+            }
+            catch { }
+            
         }
     }
 }

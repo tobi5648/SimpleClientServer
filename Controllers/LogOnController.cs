@@ -15,7 +15,6 @@ namespace Controllers
 
         public LogOnController (string username, string password)
         {
-            LogInServices
         }
     }
 }

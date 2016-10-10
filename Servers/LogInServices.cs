@@ -33,7 +33,7 @@ namespace Servers
             {
                 // Code
                 User loggedInUser;
-                bool successfullLogin = logIn.CheckForUserWithPassword(loggedInUser);
+                bool successfullLogin = logIn.CheckForUserWithPassword(out loggedInUser, loggedInUser.Username, loggedInUser.Password);
             }
         }
 

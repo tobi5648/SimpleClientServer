@@ -2,13 +2,12 @@
 {
     #region Usings
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     #endregion
 
     #region Classes
+    /// <summary>
+    /// This is the messages class
+    /// </summary>
     public class Message
     {
         #region Fields
@@ -73,8 +72,7 @@
 
             set
             {
-                if (!string.IsNullOrWhiteSpace(value.Password) && !string.IsNullOrWhiteSpace(value.Username))
-                    receiver = value;
+                receiver = value;
             }
         }
         #endregion
