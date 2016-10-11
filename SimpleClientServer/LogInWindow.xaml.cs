@@ -36,7 +36,6 @@
         private void button_Click(object sender, RoutedEventArgs e)
         {
             logon = new LogOnController(txtUsername.Text, txtPassword.Text);
-
         } 
         #endregion
     }

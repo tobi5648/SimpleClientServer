@@ -15,6 +15,15 @@ namespace Controllers
 
         public LogOnController (string username, string password)
         {
+            try
+            {
+                User user = new User(username, password);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

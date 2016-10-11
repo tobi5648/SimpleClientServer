@@ -35,7 +35,9 @@
 
             set
             {
-                username = value;
+                if (value != username)
+                    if (!string.IsNullOrWhiteSpace(value))
+                        username = value;
             }
         }
 
@@ -51,21 +53,14 @@
 
             set
             {
-                password = value;
+                if (value != password)
+                    if (!string.IsNullOrWhiteSpace(value))
+                        password = value;
             }
         }
         #endregion
 
         #region Constructors
-        /// <summary>
-        /// An empty constructor for the User
-        /// </summary>
-        /// <param name="username">the users username</param>
-        /// <param name="password">the users password</param>
-        /// <exception cref="Exception"></exception>
-        public User()
-        {
-        }
 
         /// <summary>
         /// A constructor for the User
