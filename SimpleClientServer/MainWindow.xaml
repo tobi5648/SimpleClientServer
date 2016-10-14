@@ -3,10 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowStartupLocation="CenterScreen"
         xmlns:local="clr-namespace:SimpleClientServer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="171.625" Width="232.851">
     <Grid>
-        
+        <TextBox x:Name="txtUsernameBox" HorizontalAlignment="Left" TabIndex="0" Height="26" Margin="81,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyUp="txtUsernameBox_KeyUp"/>
+        <Label x:Name="lblUsername" Content="Username:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtPasswordBox" HorizontalAlignment="Left" Height="26" TabIndex="1" Margin="81,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyUp="txtPasswordBox_KeyUp"/>
+        <Label x:Name="lblPassword" Content="Password:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnLogIn" Content="Login" FontSize="27" HorizontalAlignment="Left" TabIndex="2" Margin="71,72,0,0" VerticalAlignment="Top" Width="80" Height="42" Click="btnLogIn_Click"/>
+
     </Grid>
 </Window>
